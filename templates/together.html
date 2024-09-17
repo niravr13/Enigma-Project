@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Enigma</title>
+    <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <!--  if you want to run in together itself, use <link rel="stylesheet" href="static/styles.css"> so that the css will be updated for when together is run by itself-->
+    <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+</head>
+<body>
+    <form onsubmit="return false">
+        <label for="code">Code:</label>
+        <input type="text" id="code" name="code"><br>
+        <input pys-onClick="sub" type="submit" id="btn-form" value="submit">
+    </form>
+
+    <form1 class="output-container">
+        <p>Output: </p>
+        <p id="output"></p>
+    </form1>
+
+    <py-env>
+    - paths:
+        - /static/machine.py
+        - /static/alphabet.py
+        - /static/permutation.py
+        - /static/rotor.py
+        - /static/reflector.py
+    </py-env>
+
+
+    <py-script>
+        from machine import decryption
+
+        def sub(*args, **kwargs):
+            result_place = Element('output')
+            code_value = Element('code').value
+            result = decryption(code_value)
+            result_place.write(result)
+
+    </py-script>
+
+
+
+</body>
+</html>
